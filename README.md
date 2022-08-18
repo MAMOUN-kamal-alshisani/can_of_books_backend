@@ -12,5 +12,6 @@
 
 ***4.HTTP CRUD Operations are used on application ENDPOINTS***
 
-Server UML :
+## Server UML :
+
 ![uml](imgUml.png)
