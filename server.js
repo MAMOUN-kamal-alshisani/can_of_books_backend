@@ -16,6 +16,9 @@ const {
 
 /// base endpoint for every url! ///
 server.get("/", (req, res) => {
+  res.status(200).send(`<h1>Home Page!</h1>`);
+});
+server.get("/test", (req, res) => {
   res.status(200).send(`<h1>working well!</h1>`);
 });
 

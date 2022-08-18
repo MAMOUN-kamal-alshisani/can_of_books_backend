@@ -9,7 +9,7 @@ function getBooksFn(req, res) {
     if (error) {
       res.status(401).send(console.error(error));
     } else {
-      res.json(UserData);
+      res.status(200).json(UserData);
       console.log(UserData[0].book);
     }
   });
@@ -21,7 +21,7 @@ function addDataFn(req, res) {
 
   UserModel.find({ email: EmailQuery }, (err, UserData) => {
     if (err) {
-      res.send(console.log(err));
+      res.status(404).send(console.log(err));
     } else {
       // let newModel = new UserModel(req.body)
       UserData[0].book.push({
@@ -32,7 +32,7 @@ function addDataFn(req, res) {
       });
       console.log(UserData[0].book);
       UserData[0].save();
-      res.send(UserData[0].book);
+      res.status(201).send(UserData[0].book);
     }
   });
 }
@@ -47,7 +47,7 @@ function removeBookFn(req, res) {
   /// finding the needed schema using the email ///
   UserModel.find({ email: EmailQuery }, (err, UserData) => {
     if (err) {
-      res.send(err);
+      res.status(404).send(err);
     } else {
       /// an array to store the modified data after delete ///
       let newBookArray = [];
@@ -62,7 +62,7 @@ function removeBookFn(req, res) {
       }
       UserData[0].book = newBookArray;
       UserData[0].save();
-      res.send(UserData[0].book);
+      res.status(200).send(UserData[0].book);
     }
   });
 }
@@ -75,7 +75,7 @@ function updateDataFn(req, res) {
 
   UserModel.find({ email: EmailQuery }, (err, UserData) => {
     if (err) {
-      res.status(500).send(err);
+      res.status(404).send(err);
     }
     console.log(UserData[0].book);
 
